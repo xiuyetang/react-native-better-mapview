@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		715B7AE11BC2C85B00A121EC /* MCBetterMapView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 715B7AE01BC2C85B00A121EC /* MCBetterMapView.h */; };
 		715B7AE31BC2C85B00A121EC /* MCBetterMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 715B7AE21BC2C85B00A121EC /* MCBetterMapView.m */; };
+		71DF71821BC2D5B7006D40A7 /* MCBetterMapViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DF71811BC2D5B7006D40A7 /* MCBetterMapViewManager.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		715B7ADD1BC2C85B00A121EC /* libMCBetterMapView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMCBetterMapView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		715B7AE01BC2C85B00A121EC /* MCBetterMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCBetterMapView.h; sourceTree = "<group>"; };
 		715B7AE21BC2C85B00A121EC /* MCBetterMapView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCBetterMapView.m; sourceTree = "<group>"; };
+		71DF71801BC2D5B7006D40A7 /* MCBetterMapViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCBetterMapViewManager.h; sourceTree = "<group>"; };
+		71DF71811BC2D5B7006D40A7 /* MCBetterMapViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCBetterMapViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			children = (
 				715B7AE01BC2C85B00A121EC /* MCBetterMapView.h */,
 				715B7AE21BC2C85B00A121EC /* MCBetterMapView.m */,
+				71DF71801BC2D5B7006D40A7 /* MCBetterMapViewManager.h */,
+				71DF71811BC2D5B7006D40A7 /* MCBetterMapViewManager.m */,
 			);
 			path = MCBetterMapView;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				715B7AE31BC2C85B00A121EC /* MCBetterMapView.m in Sources */,
+				71DF71821BC2D5B7006D40A7 /* MCBetterMapViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +216,7 @@
 		715B7AE71BC2C85B00A121EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React/**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -219,6 +226,7 @@
 		715B7AE81BC2C85B00A121EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React/**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -244,6 +252,7 @@
 				715B7AE81BC2C85B00A121EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

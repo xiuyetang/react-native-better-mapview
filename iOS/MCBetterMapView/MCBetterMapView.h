@@ -1,13 +1,29 @@
-//
-//  MCBetterMapView.h
-//  MCBetterMapView
-//
-//  Created by Jesus Garcia on 10/5/15.
-//  Copyright © 2015 Jesus Garcia. All rights reserved.
-//
+/**
+    The following source was copied from FaceBook's React Native RCTMap.h file and modified
+    https://github.com/facebook/react-native
+*/
 
-#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import <UIKit/UIKit.h>
 
-@interface MCBetterMapView : NSObject
+#import "RCTConvert+MapKit.h"
+
+extern const CLLocationDegrees RCTMapDefaultSpan;
+extern const NSTimeInterval RCTMapRegionChangeObserveInterval;
+extern const CGFloat RCTMapZoomBoundBuffer;
+
+@class RCTEventDispatcher;
+
+@interface MCBetterMapView: MKMapView
+
+@property (nonatomic, assign) BOOL followUserLocation;
+@property (nonatomic, assign) BOOL hasStartedRendering;
+@property (nonatomic, assign) CGFloat minDelta;
+@property (nonatomic, assign) CGFloat maxDelta;
+@property (nonatomic, assign) UIEdgeInsets legalLabelInsets;
+@property (nonatomic, strong) NSTimer *regionChangeObserveTimer;
+@property (nonatomic, strong) NSMutableArray *annotationIds;
+
+- (void)setAnnotations:(RCTPointAnnotationArray *)annotations;
 
 @end
