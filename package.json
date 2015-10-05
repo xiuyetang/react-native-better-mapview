@@ -1,27 +1,35 @@
 {
-  "name": "react-native-better-mapview",
-  "version": "0.0.1",
-  "description": "A better React Native implementation for iOS MapKit MapView",
-  "main": "MCBetterMapView.ios.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ModusCreateOrg/react-native-better-mapview.git"
-  },
-  "keywords": [
-    "MapKit",
-    "MapView",
-    "React",
-    "ReactNative",
-    "React-Native",
-    "Map"
-  ],
-  "author": "Jay Garcia",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ModusCreateOrg/react-native-better-mapview/issues"
-  },
-  "homepage": "https://github.com/ModusCreateOrg/react-native-better-mapview"
+    "name": "react-native-better-mapview",
+    "version": "0.0.1",
+    "description": "A better React Native implementation for iOS MapKit MapView",
+    "main": "MCBetterMapView.ios.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ModusCreateOrg/react-native-better-mapview.git"
+    },
+    "keywords": [
+        "MapKit",
+        "MapView",
+        "React",
+        "ReactNative",
+        "React-Native",
+        "Map"
+    ],
+    "files" : [
+        "LICENSE.txt",
+        "MCBetterMapView.android.js",
+        "MCBetterMapView.ios.js",
+        "README.md",
+        "iOS",
+        "package.json"
+    ],
+    "author": "Jay Garcia",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ModusCreateOrg/react-native-better-mapview/issues"
+    },
+    "homepage": "https://github.com/ModusCreateOrg/react-native-better-mapview"
 }

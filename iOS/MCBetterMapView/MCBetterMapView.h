@@ -8,9 +8,9 @@
 
 #import "RCTConvert+MapKit.h"
 
-extern const CLLocationDegrees RCTMapDefaultSpan;
-extern const NSTimeInterval RCTMapRegionChangeObserveInterval;
-extern const CGFloat RCTMapZoomBoundBuffer;
+extern const CLLocationDegrees MCBetterMapViewDefaultSpan;
+extern const NSTimeInterval MCBetterMapViewRegionChangeObserveInterval;
+extern const CGFloat MCBetterMapViewZoomBoundBuffer;
 
 @class RCTEventDispatcher;
 
