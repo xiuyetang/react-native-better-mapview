@@ -1,6 +1,6 @@
 {
     "name": "react-native-better-mapview",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "A better React Native implementation for iOS MapKit MapView",
     "main": "MCBetterMapView.ios.js",
     "scripts": {
