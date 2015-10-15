@@ -1,5 +1,6 @@
 /**
-    The following source was copied from FaceBook's React Native RCTMapManager.m file and modified
+    The following source was copied from FaceBook's React Native RCTMapManager.m file and modified due to the
+    nature of how the framework is designed and implemented.
     https://github.com/facebook/react-native
 */
 
@@ -26,8 +27,7 @@ static NSString *const MCBetterMapViewKey = @"MCBetterMapView";
 
 RCT_EXPORT_MODULE()
 
-- (UIView *)view
-{
+- (UIView *)view {
     MCBetterMapView *map = [MCBetterMapView new];
     map.delegate = self;
     return map;
@@ -47,10 +47,9 @@ RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, MCBetterMapView) {
     [view setRegion:json ? [RCTConvert MKCoordinateRegion:json] : defaultView.region animated:YES];
 }
 
+
+
 #pragma mark MKMapViewDelegate
-
-
-
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (![view.annotation isKindOfClass:[MKUserLocation class]]) {
 
@@ -59,16 +58,16 @@ RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, MCBetterMapView) {
         NSString *subtitle = view.annotation.subtitle ?: @"";
 
         NSDictionary *event = @{
-                            @"target": mapView.reactTag,
-                            @"action": @"annotation-click",
-                            @"annotation": @{
-                                    @"id": annotation.identifier,
-                                    @"title": title,
-                                    @"subtitle": subtitle,
-                                    @"latitude": @(annotation.coordinate.latitude),
-                                    @"longitude": @(annotation.coordinate.longitude)
-                                    }
-                            };
+                @"target"     : mapView.reactTag,
+                @"action"     : @"annotation-click",
+                @"annotation" : @{
+                        @"id"       : annotation.identifier,
+                        @"title"    : title,
+                        @"subtitle" : subtitle,
+                        @"latitude" : @(annotation.coordinate.latitude),
+                        @"longitude": @(annotation.coordinate.longitude)
+                    }
+                };
 
         [self.bridge.eventDispatcher sendInputEventWithName:@"press" body:event];
     }
@@ -177,11 +176,11 @@ RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, MCBetterMapView) {
     // So let's try to make map zoom back to 99% max or 101% min so that there are some buffer that moving the map won't constantly hitting the max/min bound.
     if (mapView.maxDelta > FLT_EPSILON && region.span.longitudeDelta > mapView.maxDelta) {
         needZoom = YES;
-        newLongitudeDelta = mapView.maxDelta * (1 - MCBetterMapViewZoomBoundBuffer);
+        newLongitudeDelta = mapView.maxDelta * (1 - RCTMapZoomBoundBuffer);
     }
     else if (mapView.minDelta > FLT_EPSILON && region.span.longitudeDelta < mapView.minDelta) {
         needZoom = YES;
-        newLongitudeDelta = mapView.minDelta * (1 + MCBetterMapViewZoomBoundBuffer);
+        newLongitudeDelta = mapView.minDelta * (1 + RCTMapZoomBoundBuffer);
     }
     
     if (needZoom) {
@@ -199,18 +198,44 @@ RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, MCBetterMapView) {
     if (!CLLocationCoordinate2DIsValid(region.center)) {
         return;
     }
+    
+    MKMapRect visibleMapRect = mapView.visibleMapRect;
+    NSSet *visibleAnnotations = [mapView annotationsInMapRect:visibleMapRect];
+    
+    NSMutableArray *allVisibleAnnotations = [NSMutableArray new];
+    
+    
+    
+    
+    for (RCTPointAnnotation *annotation in visibleAnnotations) {
+    
+        NSString *title = annotation.title ?: @"";
+        NSString *subtitle = annotation.subtitle ?: @"";
+
+        [allVisibleAnnotations addObject: @{
+            @"id"       : annotation.identifier, // Todo remove?
+            @"title"    : title,
+            @"subtitle" : subtitle,
+            @"latitude" : @(annotation.coordinate.latitude),
+            @"longitude": @(annotation.coordinate.longitude)
+        
+        }];
+    
+//        NSLog(@"%@", allVisibleAnnotations);
+    }
 
 #define FLUSH_NAN(value) (isnan(value) ? 0 : value)
 
     NSDictionary *event = @{
-        @"target": mapView.reactTag,
-        @"continuous": @(continuous),
-        @"region": @{
-            @"latitude": @(FLUSH_NAN(region.center.latitude)),
-            @"longitude": @(FLUSH_NAN(region.center.longitude)),
-            @"latitudeDelta": @(FLUSH_NAN(region.span.latitudeDelta)),
-            @"longitudeDelta": @(FLUSH_NAN(region.span.longitudeDelta)),
-        }
+        @"target"     : mapView.reactTag,
+        @"continuous" : @(continuous),
+        @"region"     : @{
+            @"latitude"       : @(FLUSH_NAN(region.center.latitude)),
+            @"longitude"      : @(FLUSH_NAN(region.center.longitude)),
+            @"latitudeDelta"  : @(FLUSH_NAN(region.span.latitudeDelta)),
+            @"longitudeDelta" : @(FLUSH_NAN(region.span.longitudeDelta)),
+            @"annotations"    : allVisibleAnnotations
+        },
     };
     
 //    NSLog(@"%@", event);
